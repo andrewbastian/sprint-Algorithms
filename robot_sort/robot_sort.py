@@ -96,8 +96,35 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # 1st Pass
+        """
+        -Base Case: we check if the robot can move `right' from index `0`
+            -if not we are done sorting
+        -Pick up the first item
+        -Move through the list comparing and swapping items.
+        -Reach the end of the list w/ the smallest item
+        -move back left though the list dropping items while moveing from index to the next.
+        """
+        if not self.can_move_right():
+            return
+
+        while self.can_move_right():
+            if self.compare_item() == None:
+                self.swap_item()
+                self.move_right()
+            else:
+                self.swap_item()
+                self.move_right()
+
+        while self.can_move_left and self.compare_item() != None:
+            if self.compare_item() == 1:
+                self.swap_item()
+                self.move_left()
+            else:
+                self.move_left()
+        self.swap_item()
+        self.move_right()
+        self.sort()
 
 
 if __name__ == "__main__":
